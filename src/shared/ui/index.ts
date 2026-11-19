@@ -14,7 +14,7 @@ export { Container } from "./container";
 // export * from "./convex-client-provider";
 // export * from "./spinner";
 // export * from "./dropdown-menu";
-// export * from "./skeleton";
+export * from "./skeleton";
 // export { ErrorMessage } from "./error-message";
 // export { StatusMessage } from "./status-message";
 // export * from "./sonner";

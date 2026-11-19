@@ -420,7 +420,7 @@ export default function Home() {
       </section>
 
       {/* 5. PULSE LOGS / EDITORIAL STORIES */}
-      <section aria-labelledby="pulse-logs-heading" className="space-y-8">
+      <section aria-labelledby="pulse-logs-heading">
         <div>
           <h2
             id="pulse-logs-heading"
