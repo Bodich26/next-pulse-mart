@@ -1,4 +1,4 @@
-import { CatalogView } from "@/widgets/catalog/ui/catalog-view";
+import { CatalogView } from "@/widgets/catalog";
 
 const CATALOG_PRODUCTS = [
   {
@@ -8,6 +8,7 @@ const CATALOG_PRODUCTS = [
     category: "Peripherals",
     price: 249,
     stockCount: 14,
+    image: "/catalog/audiocard-1.png",
     specs: "CNC Aluminum · Tactile Heavy Switches",
     slug: "cyber-deck-75-keyboard",
   },
@@ -18,6 +19,7 @@ const CATALOG_PRODUCTS = [
     category: "Audio",
     price: 430,
     stockCount: 6,
+    image: "/catalog/audiocard-1.png",
     specs: "Planar Magnetic · Open-Back Reference",
     slug: "monitor-zero-headphones",
   },
@@ -28,6 +30,7 @@ const CATALOG_PRODUCTS = [
     category: "Guitars & Mods",
     price: 185,
     stockCount: 22,
+    image: "/catalog/audiocard-1.png",
     specs: "Ceramic Magnet · High-Output Passive",
     slug: "drop-g-baritone-pickups",
   },
@@ -38,6 +41,7 @@ const CATALOG_PRODUCTS = [
     category: "Hardware",
     price: 299,
     stockCount: 9,
+    image: "/catalog/audiocard-1.png",
     specs: "Brushless Motor · Titanium Hex Bits",
     slug: "mk4-torque-driver",
   },
@@ -48,6 +52,7 @@ const CATALOG_PRODUCTS = [
     category: "Merch",
     price: 120,
     stockCount: 3,
+    image: "/catalog/audiocard-1.png",
     specs: "100% Brushed Cotton · Puff Print",
     slug: "industrial-heavyweight-hoodie",
   },
@@ -58,6 +63,7 @@ const CATALOG_PRODUCTS = [
     category: "Audio",
     price: 215,
     stockCount: 0,
+    image: "/catalog/audiocard-1.png",
     specs: "True Bypass · Die-Cast Steel Enclosure",
     slug: "analog-distortion-preamp",
   },
@@ -68,6 +74,7 @@ const CATALOG_PRODUCTS = [
     category: "Peripherals",
     price: 65,
     stockCount: 41,
+    image: "/catalog/audiocard-1.png",
     specs: "Solid Tungsten · Laser Etched",
     slug: "tungsten-artisan-keycap",
   },
@@ -78,6 +85,7 @@ const CATALOG_PRODUCTS = [
     category: "Merch",
     price: 89,
     stockCount: 11,
+    image: "/catalog/audiocard-1.png",
     specs: "Gatefold Sleeve · Remastered Heavy Audio",
     slug: "anthology-vol-2-vinyl",
   },

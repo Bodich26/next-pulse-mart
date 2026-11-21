@@ -2,13 +2,17 @@ import { Container, Logo } from "@/shared";
 import { Search, ShoppingBag, User } from "lucide-react";
 import Link from "next/link";
 import { HeaderNav } from "./header-nav";
+import { Suspense } from "react";
+import { HeaderNavSkeleton } from "./header-nav-skeleton";
 
 export const Header = () => {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
       <Container className="flex h-14 items-center justify-between">
         <Logo />
-        <HeaderNav />
+        <Suspense fallback={<HeaderNavSkeleton />}>
+          <HeaderNav />
+        </Suspense>
 
         {/* Утилиты пользователя */}
         <div className="flex items-center gap-3 text-xs">

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ChevronRight, Sparkles } from "lucide-react";
 import Image from "next/image";
+import { FeaturedBlogs } from "@/widgets/featured-blogs";
 
 const CATALOG_ITEMS = [
   {
@@ -420,64 +421,7 @@ export default function Home() {
       </section>
 
       {/* 5. PULSE LOGS / EDITORIAL STORIES */}
-      <section aria-labelledby="pulse-logs-heading">
-        <div>
-          <h2
-            id="pulse-logs-heading"
-            className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl"
-          >
-            Pulse Logs.{" "}
-            <span className="text-muted-foreground font-semibold">
-              Stories from the workshop.
-            </span>
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {NEWS_POSTS.map((post) => (
-            <article
-              key={post.id}
-              className="group flex flex-col justify-between overflow-hidden rounded-3xl bg-card shadow-sm border border-border transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
-            >
-              <div>
-                <div className="relative aspect-video w-full">
-                  <Image
-                    src={post.image}
-                    alt={post.title}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    className=""
-                  />
-                </div>
-
-                <div className="p-6">
-                  <span className="text-[11px] font-semibold text-primary uppercase tracking-wider">
-                    {post.category}
-                  </span>
-                  <h3 className="mt-2 text-lg font-bold tracking-tight text-foreground group-hover:text-primary transition-colors">
-                    <Link href={`/blog/${post.slug}`}>{post.title}</Link>
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {post.excerpt}
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-center justify-between border-t border-border px-6 py-4 text-xs text-muted-foreground">
-                <time dateTime={post.date}>{post.displayDate}</time>
-                <Link
-                  href={`/blog/${post.slug}`}
-                  aria-label={`Read more about ${post.title}`}
-                  className="inline-flex items-center gap-1 font-medium text-primary"
-                >
-                  <span>Read</span>
-                  <ChevronRight className="h-3.5 w-3.5" />
-                </Link>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
+      <FeaturedBlogs posts={NEWS_POSTS} />
     </>
   );
 }

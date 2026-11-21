@@ -11,7 +11,7 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
     <div className="min-h-screen bg-custom-bg text-foreground font-sans antialiased selection:bg-primary selection:text-primary-foreground">
       <Header />
       <main>
-        <Container className="space-y-24 py-10">{children}</Container>
+        <Container className="space-y-24 pt-10">{children}</Container>
       </main>
       <Footer />
     </div>
