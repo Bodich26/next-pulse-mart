@@ -1,0 +1,64 @@
+import { Fragment } from "react";
+import Link from "next/link";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "./breadcrumb";
+
+export interface BreadcrumbNavItem {
+  label: string;
+  href?: string;
+}
+
+interface BreadcrumbsProps {
+  items: BreadcrumbNavItem[];
+  className?: string;
+}
+
+export function NavTrail({ items, className }: BreadcrumbsProps) {
+  if (items.length === 0) {
+    return null;
+  }
+
+  return (
+    <Breadcrumb
+      aria-label="Breadcrumb"
+      className={className ?? "text-xs font-medium text-muted-foreground mb-4"}
+    >
+      <BreadcrumbList className="gap-2 text-xs font-medium">
+        {items.map((item, index) => {
+          const isLast = index === items.length - 1;
+
+          return (
+            <Fragment key={`${item.label}-${index}`}>
+              <BreadcrumbItem>
+                {isLast || !item.href ? (
+                  <BreadcrumbPage className="text-foreground font-semibold">
+                    {item.label}
+                  </BreadcrumbPage>
+                ) : (
+                  <BreadcrumbLink
+                    render={
+                      <Link
+                        href={item.href}
+                        className="hover:text-foreground transition-colors"
+                      >
+                        {item.label}
+                      </Link>
+                    }
+                  />
+                )}
+              </BreadcrumbItem>
+
+              {!isLast && <BreadcrumbSeparator />}
+            </Fragment>
+          );
+        })}
+      </BreadcrumbList>
+    </Breadcrumb>
+  );
+}

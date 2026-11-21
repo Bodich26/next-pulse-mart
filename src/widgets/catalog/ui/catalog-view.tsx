@@ -8,6 +8,7 @@ import {
 } from "@/features/catalog-filters";
 import { CatalogSkeleton } from "./catalog-skeleton";
 import { CatalogContent } from "./catalog-content";
+import { NavTrail } from "@/shared";
 
 interface CatalogViewProps {
   searchParams: CatalogSearchParams;
@@ -24,24 +25,9 @@ export function CatalogView({
     <div className="space-y-8">
       {/* Статическая верхняя часть */}
       <div className="border-b border-border pb-6">
-        <nav
-          aria-label="Breadcrumb"
-          className="text-xs font-medium text-muted-foreground"
-        >
-          <ol className="flex items-center gap-2">
-            <li>
-              <Link
-                href="/"
-                className="hover:text-foreground transition-colors"
-              >
-                Home
-              </Link>
-            </li>
-            <li aria-hidden="true">/</li>
-            <li className="text-foreground font-semibold">Core Catalog</li>
-          </ol>
-        </nav>
-
+        <NavTrail
+          items={[{ label: "Home", href: "/" }, { label: "Core Catalog" }]}
+        />
         <div className="mt-4">
           <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
             Core Catalog.{" "}

@@ -1,5 +1,7 @@
 export * from "./button";
-// export * from "./card";
+export * from "./card";
+export * from "./breadcrumb";
+export { NavTrail } from "./nav-trail";
 // export * from "./input";
 // export * from "./label";
 // export * from "./field";
