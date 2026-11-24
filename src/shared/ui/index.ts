@@ -2,6 +2,7 @@ export * from "./button";
 export * from "./card";
 export * from "./breadcrumb";
 export { NavTrail } from "./nav-trail";
+export { PriceFormat } from "./price-format";
 // export * from "./input";
 // export * from "./label";
 // export * from "./field";

@@ -4,7 +4,7 @@ const CATALOG_PRODUCTS = [
   {
     id: "prod-1",
     sku: "PM-KB-001",
-    title: "Cyber-Deck 75% Mechanical Keyboard",
+    title: "Cyber-Deck Mechanical Keyboard",
     category: "Peripherals",
     price: 249,
     stockCount: 14,

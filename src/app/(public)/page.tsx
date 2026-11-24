@@ -1,44 +1,51 @@
-import Link from "next/link";
-import { ChevronRight, Sparkles } from "lucide-react";
-import Image from "next/image";
 import { FeaturedBlogs } from "@/widgets/featured-blogs";
+import { CatalogCore } from "@/widgets/catalog";
+import { NextDrop, UpcomingDrops } from "@/widgets/drop";
 
 const CATALOG_ITEMS = [
   {
-    id: "1",
-    title: "Mechanical Keyboard",
-    subtitle: "CNC Aluminum · Tactile Switches",
-    price: "$249",
-    stock: "In Stock",
-    image: "/catalog/keyboard-1.png",
-    slug: "mechanical-keyboard",
-  },
-  {
-    id: "2",
-    title: "Industrial Audio Headset",
-    subtitle: "Planar Magnetic · Studio Reference",
-    price: "$430",
-    stock: "In Stock",
-    image: "/catalog/headphones-1.png",
-    slug: "industrial-audio-headset",
-  },
-  {
-    id: "3",
-    title: "Power Drill MK-IV",
-    subtitle: "Brushless Torque · Titanium Kit",
-    price: "$299",
-    stock: "In Stock",
+    id: "prod-1",
+    sku: "PM-AU-001",
+    title: "SUGY USB-C Studio Audio Interface",
+    category: "Audio",
+    price: 249,
+    stockCount: 14,
     image: "/catalog/audiocard-1.png",
-    slug: "power-drill-mk4",
+    specs: "24-bit/192kHz · Ultra-Low Latency Preamps",
+    slug: "sugy-studio-audio-interface",
   },
   {
-    id: "4",
-    title: "Limited Edition Vinyl",
-    subtitle: "180g Heavy Pressing · Remastered",
-    price: "$89",
-    stock: "In Stock",
-    image: "/catalog/mouse-1.png",
-    slug: "limited-edition-vinyl",
+    id: "prod-2",
+    sku: "PM-AU-014",
+    title: "HAVI Monitor Zero Studio Headphones",
+    category: "Audio",
+    price: 430,
+    stockCount: 6,
+    image: "/catalog/headphones-1.png",
+    specs: "Planar Magnetic · Open-Back Reference",
+    slug: "havi-monitor-zero-headphones",
+  },
+  {
+    id: "prod-3",
+    sku: "PM-MD-031",
+    title: "Industrial Heavyweight Hoodie [480GSM]",
+    category: "Merch",
+    price: 185,
+    stockCount: 22,
+    image: "/catalog/hoodies-1.png",
+    specs: "100% Brushed Cotton · Puff Print",
+    slug: "industrial-heavyweight-hoodie",
+  },
+  {
+    id: "prod-4",
+    sku: "PM-KB-001",
+    title: "Cyber-Deck Mechanical Keyboard",
+    category: "Peripherals",
+    price: 299,
+    stockCount: 9,
+    image: "/catalog/keyboard-1.png",
+    specs: "CNC Aluminum · Tactile Heavy Switches",
+    slug: "cyber-deck-keyboard",
   },
 ];
 
@@ -46,38 +53,62 @@ const UPCOMING_DROPS = [
   {
     id: "drop-1",
     time: "12:00",
-    title: "C-7 FR S Apocalypse",
-    description: "Schecter CNC-machined titanium artisan keycap series.",
-    author: "User_***84",
+    title: "Ibanez RGD Prestige",
+    description: "Ibanez CNC-machined titanium artisan keycap series.",
     countdown: "04:12:00",
-    image: "/drop/c-7-fr-s-apocalypse.png",
+    slug: "ibanez-rgd-prestige",
+    image: "/drop/ibanez-rgd-prestige.png",
+    craftsmanship: "Made in Japan",
+    price: 6500,
+    quantity: 10,
   },
   {
     id: "drop-2",
-    time: "18:00",
-    title: "Keith Merrow KM-7 MK-III Artist L",
-    description: "Schecter Custom high-gain tube amplifier built.",
-    author: "User_***12",
-    countdown: "08:45:00",
-    image: "/drop/keith-merrow-km-7mk-III.png",
+    time: "12:00",
+    title: "C-7 FR S Apocalypse",
+    description: "Schecter CNC-machined titanium artisan keycap series.",
+    countdown: "04:12:00",
+    slug: "ibanez-rg-621-ah",
+    image: "/drop/c-7-fr-s-apocalypse.png",
+    craftsmanship: "Made in Japan",
+    price: 6500,
+    quantity: 10,
   },
   {
     id: "drop-3",
-    time: "12:00",
-    title: "C-8 Multiscale Silver Mountain LH",
-    description: "Schecter CNC-machined titanium artisan keycap series.",
-    author: "User_***84",
-    countdown: "04:12:00",
-    image: "/drop/c-8-multiscale-silver.png",
+    time: "18:00",
+    title: "Keith Merrow KM-7 MK-III Artist L",
+    description: "Schecter Custom high-gain tube amplifier built.",
+    countdown: "08:45:00",
+    slug: "ibanez-rg-621-ah",
+    image: "/drop/keith-merrow-km-7mk-III.png",
+    craftsmanship: "Made in Japan",
+    price: 6500,
+    quantity: 10,
   },
   {
     id: "drop-4",
+    time: "12:00",
+    title: "C-8 Multiscale Silver Mountain LH",
+    description: "Schecter CNC-machined titanium artisan keycap series.",
+    countdown: "04:12:00",
+    slug: "ibanez-rg-621-ah",
+    image: "/drop/c-8-multiscale-silver.png",
+    craftsmanship: "Made in Japan",
+    price: 6500,
+    quantity: 10,
+  },
+  {
+    id: "drop-5",
     time: "18:00",
     title: "Ibanez RGD621AH",
     description: "Custom high-gain tube amplifier built for low tunings.",
-    author: "User_***12",
     countdown: "08:45:00",
+    slug: "ibanez-rg-621-ah",
     image: "/drop/ibanez-p-region-rgd621ah.png",
+    craftsmanship: "Made in Japan",
+    price: 6500,
+    quantity: 10,
   },
 ];
 
@@ -118,264 +149,16 @@ const NEWS_POSTS = [
 ];
 
 export default function Home() {
+  const featuredDrop = UPCOMING_DROPS[0] ?? null;
+  const restDrops = UPCOMING_DROPS.slice(1, 5);
+
   return (
     <>
-      <section
-        aria-labelledby="featured-auction-heading"
-        className="overflow-hidden rounded-3xl bg-card shadow-sm border border-border"
-      >
-        <div className="grid grid-cols-1 lg:grid-cols-12">
-          {/* Левая часть: Презентация инструмента */}
-          <div className="flex flex-col justify-between p-8 sm:p-12 lg:col-span-8">
-            <div>
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
-                <Sparkles className="h-3 w-3" />
-                Featured Auction
-              </span>
-              <h1
-                id="featured-auction-heading"
-                className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-5xl"
-              >
-                Ibanez RGD Prestige
-              </h1>
-              <p className="mt-2 text-lg font-medium text-muted-foreground">
-                Current Bid{" "}
-                <span className="font-semibold text-foreground">$6,499</span>
-              </p>
-            </div>
+      <NextDrop drop={featuredDrop} />
 
-            {/* Студийный рендер */}
-            <figure className="mt-8">
-              <div className="relative flex h-64 w-full items-center justify-center overflow-hidden rounded-2xl bg-muted border border-border/50">
-                <Image
-                  src="/drop/ibanez-rgd-prestige.png"
-                  alt="Ibanez RGD Prestige"
-                  fill
-                  priority
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  className="h-full w-full object-contain"
-                />
-              </div>
+      <CatalogCore catalogItems={CATALOG_ITEMS} />
+      <UpcomingDrops drops={restDrops} />
 
-              <span className="mt-3 block text-center text-xs font-medium tracking-wide text-muted-foreground">
-                Studio Render · Ibanez RGD Prestige
-              </span>
-
-              <figcaption className="sr-only">
-                Ibanez RGD Prestige extended-range electric guitar
-              </figcaption>
-            </figure>
-          </div>
-
-          {/* Правая часть: Карточка торгов */}
-          <aside
-            aria-label="Bidding Terminal"
-            className="flex flex-col justify-between border-t border-border bg-muted/30 p-8 sm:p-10 lg:col-span-4 lg:border-t-0 lg:border-l"
-          >
-            <div>
-              <span className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">
-                Live Auction
-              </span>
-              <h2 className="mt-1 text-xl font-bold tracking-tight text-foreground">
-                Bidding Terminal
-              </h2>
-
-              {/* Таймер обратного отсчета */}
-              <div className="mt-6 rounded-2xl bg-card p-5 shadow-2xs border border-border">
-                <span className="block text-[11px] font-medium text-muted-foreground">
-                  Time Remaining
-                </span>
-                <time
-                  dateTime="P2DT14H59M32S"
-                  className="mt-1 block text-3xl font-bold tracking-tight text-foreground tabular-nums"
-                >
-                  02 : 14 : 59 : 32
-                </time>
-                <div className="mt-2 grid grid-cols-4 text-[10px] font-medium text-muted-foreground uppercase">
-                  <span>Days</span>
-                  <span>Hrs</span>
-                  <span>Mins</span>
-                  <span>Secs</span>
-                </div>
-              </div>
-
-              {/* Метаданные торгов */}
-              <dl className="mt-6 space-y-3 border-t border-border pt-5 text-sm">
-                <div className="flex items-center justify-between">
-                  <dt className="text-muted-foreground">Quantity</dt>
-                  <dd className="font-semibold text-foreground">10 pcs</dd>
-                </div>
-                <div className="flex items-center justify-between">
-                  <dt className="text-muted-foreground">Craftsmanship</dt>
-                  <dd className="font-semibold text-foreground">
-                    Made in Japan
-                  </dd>
-                </div>
-              </dl>
-            </div>
-
-            <Link
-              href="/drop/cyber-forge-bass-vi"
-              className="mt-8 flex w-full items-center justify-center rounded-full bg-primary px-6 py-3.5 text-sm font-medium text-primary-foreground shadow-xs transition-all hover:bg-primary/90 active:scale-[0.99]"
-            >
-              Place Bid Now
-            </Link>
-          </aside>
-        </div>
-      </section>
-
-      {/* 2. CORE CATALOG / DROP GEAR */}
-      <section aria-labelledby="core-catalog-heading" className="space-y-8">
-        <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-end">
-          <div>
-            <h2
-              id="core-catalog-heading"
-              className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl"
-            >
-              Core Catalog.{" "}
-              <span className="text-muted-foreground font-semibold">
-                Engineered to perform.
-              </span>
-            </h2>
-          </div>
-          <Link
-            href="/catalog"
-            className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
-          >
-            <span>Explore all gear</span>
-            <ChevronRight className="h-4 w-4" />
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {CATALOG_ITEMS.map((item) => (
-            <article
-              key={item.id}
-              className="group flex flex-col justify-between rounded-3xl bg-card p-6 shadow-sm border border-border transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
-            >
-              <div>
-                <div className="flex items-center justify-between">
-                  <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-emerald-600">
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                    {item.stock}
-                  </span>
-                </div>
-
-                <Link
-                  href={`/product/${item.slug}`}
-                  className="group mt-4 block"
-                >
-                  <div className="relative aspect-square w-full overflow-hidden rounded-2xl bg-muted p-4 transition-colors group-hover:bg-muted/80 border border-border/40">
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
-                    />
-                  </div>
-                </Link>
-
-                <div className="mt-5">
-                  <h3 className="text-base font-semibold text-foreground">
-                    <Link
-                      href={`/product/${item.slug}`}
-                      className="hover:text-primary transition-colors"
-                    >
-                      {item.title}
-                    </Link>
-                  </h3>
-                  <p className="mt-1 text-xs text-muted-foreground">
-                    {item.subtitle}
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-6 flex items-center justify-between pt-4 border-t border-border">
-                <span className="text-base font-semibold text-foreground">
-                  {item.price}
-                </span>
-
-                <button
-                  type="button"
-                  className="rounded-full bg-primary px-4 py-1.5 text-xs font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-                >
-                  Buy
-                </button>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* 3. UPCOMING DROPS SCHEDULE */}
-      <section aria-labelledby="upcoming-drops-heading" className="space-y-6">
-        <div>
-          <h2
-            id="upcoming-drops-heading"
-            className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl"
-          >
-            Upcoming Drops.{" "}
-            <span className="text-muted-foreground font-semibold">
-              Mark your calendar.
-            </span>
-          </h2>
-        </div>
-
-        <div className="divide-y divide-border overflow-hidden rounded-3xl bg-card shadow-sm border border-border">
-          {UPCOMING_DROPS.map((drop) => (
-            <article
-              key={drop.id}
-              className="flex flex-col justify-between gap-4 p-6 transition-colors hover:bg-muted/40 sm:flex-row sm:items-center"
-            >
-              <div className="flex items-center gap-5">
-                <time className="hidden w-12 text-sm font-semibold text-muted-foreground tabular-nums sm:block">
-                  {drop.time}
-                </time>
-
-                <div className="relative h-16 w-16 rounded-2xl border border-border/40">
-                  <Image
-                    src={drop.image}
-                    alt={drop.title}
-                    fill
-                    sizes="64px"
-                    className="object-contain p-1"
-                  />
-                </div>
-
-                <div>
-                  <h3 className="text-base font-semibold text-foreground">
-                    {drop.title}
-                  </h3>
-                  <p className="mt-0.5 text-sm text-muted-foreground line-clamp-1">
-                    {drop.description}
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-center justify-between gap-6 border-t border-border pt-4 sm:border-t-0 sm:pt-0">
-                <div className="text-left sm:text-right">
-                  <span className="block text-[11px] font-medium text-muted-foreground">
-                    Starts in
-                  </span>
-                  <time className="text-sm font-semibold text-foreground tabular-nums">
-                    {drop.countdown}
-                  </time>
-                </div>
-
-                <Link
-                  href={"/drop/1"}
-                  className="inline-flex items-center gap-1.5 rounded-full bg-secondary px-4 py-2 text-xs font-medium text-secondary-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
-                >
-                  <span>Watch Now</span>
-                </Link>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* 4. BENTO GRID */}
       <section
         aria-label="PulseMart Manifesto and Features"
         className="grid grid-cols-1 gap-6 md:grid-cols-12"
@@ -420,7 +203,6 @@ export default function Home() {
         </article>
       </section>
 
-      {/* 5. PULSE LOGS / EDITORIAL STORIES */}
       <FeaturedBlogs posts={NEWS_POSTS} />
     </>
   );
