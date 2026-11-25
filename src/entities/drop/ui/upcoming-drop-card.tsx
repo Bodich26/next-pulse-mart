@@ -7,7 +7,7 @@ export const UpcomingDropCard = ({
   time,
   image,
   title,
-  description,
+  miniDescription,
   countdown,
   slug,
 }: UpcomingDropCardProps) => {
@@ -34,7 +34,7 @@ export const UpcomingDropCard = ({
         <div>
           <h3 className="text-base font-semibold text-foreground">{title}</h3>
           <p className="mt-0.5 text-sm text-muted-foreground line-clamp-1">
-            {description}
+            {miniDescription}
           </p>
         </div>
       </div>
