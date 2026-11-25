@@ -1,6 +1,6 @@
 import { ProductSpecs, ProductSpecsProps } from "@/entities/product";
 
-export const TechnicalProductSpecs = ({ specs }: ProductSpecsProps) => {
+export const TechnicalProductSpecs = ({ specs, title }: ProductSpecsProps) => {
   return (
     <section
       aria-labelledby="technical-specs-heading"
@@ -10,7 +10,7 @@ export const TechnicalProductSpecs = ({ specs }: ProductSpecsProps) => {
         id="technical-specs-heading"
         className="text-xl font-bold tracking-tight text-foreground"
       >
-        Technical Specifications
+        {title}
       </h2>
 
       <ProductSpecs specs={specs} />

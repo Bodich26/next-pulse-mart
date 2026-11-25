@@ -22,4 +22,5 @@ export interface ProductSpec {
 
 export interface ProductSpecsProps {
   specs: ProductSpec[];
+  title: string;
 }

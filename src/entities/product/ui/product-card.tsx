@@ -11,6 +11,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
+  PriceFormat,
 } from "@/shared";
 
 interface ProductCardProps {
@@ -73,7 +74,7 @@ export function ProductCard({ product }: ProductCardProps) {
             Unit Price
           </span>
           <span className="text-base font-bold text-foreground">
-            ${product.price}
+            <PriceFormat price={product.price} />
           </span>
         </div>
         <CardAction>
