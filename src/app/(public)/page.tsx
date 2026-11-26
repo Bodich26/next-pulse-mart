@@ -1,6 +1,7 @@
 import { FeaturedBlogs } from "@/widgets/featured-blogs";
 import { CatalogCore } from "@/widgets/catalog";
 import { NextDrop, UpcomingDrops } from "@/widgets/drop";
+import { Drop } from "@/entities/drop";
 
 const CATALOG_ITEMS = [
   {
@@ -49,24 +50,25 @@ const CATALOG_ITEMS = [
   },
 ];
 
-const UPCOMING_DROPS = [
+const UPCOMING_DROPS: Drop[] = [
   {
     id: "drop-1",
-    time: "12:00",
+    slug: "ibanez-rgd-prestige",
+    sku: "PM-DR-001",
+    lotNumber: "Lot #001",
     title: "Ibanez RGD Prestige",
     miniDescription:
       "A high-performance Japanese-crafted electric guitar built for precision, speed, and exceptional playability.",
     fullDescription:
       "The Ibanez RGD Prestige is a premium electric guitar engineered for modern metal and demanding players. Crafted in Japan with exceptional attention to detail, it features an extended scale length for improved string tension, precise intonation, and powerful low-end clarity. Its high-performance neck profile, premium fretwork, and carefully selected hardware provide effortless playability, even during the most technically demanding passages. Designed for heavy riffs, intricate solos, and aggressive downtuned tones, the RGD Prestige combines Japanese craftsmanship with uncompromising performance.",
-    sku: "PM-KB-001",
-    countdown: "04:12:00",
-    lotNumber: "Lot #001",
     status: "LIVE",
     price: 6500,
-    craftsmanship: "Made in Japan",
+    minIncrement: 100,
+    currency: "USD",
     quantity: 10,
-    slug: "ibanez-rgd-prestige",
-    endsAtIso: "2026-11-15T20:00:00Z",
+    craftsmanship: "Made in Japan",
+    startsAtIso: "2026-11-26T10:00:00.000Z",
+    endsAtIso: "2026-11-29T20:00:00.000Z",
     image: "/drop/ibanez-rgd-prestige.png",
     specs: [
       { label: "Scale Length", value: '30" Baritone Scale' },
@@ -82,21 +84,22 @@ const UPCOMING_DROPS = [
   },
   {
     id: "drop-2",
-    time: "12:00",
+    slug: "schecter-c-7-fr-s-apocalypse",
+    sku: "PM-SC-002",
+    lotNumber: "Lot #002",
     title: "C-7 FR S Apocalypse",
     miniDescription:
       "A battle-ready 7-string metal guitar featuring aggressive styling, powerful tones, and precision engineering.",
     fullDescription:
       "The Schecter C-7 FR S Apocalypse is a high-performance 7-string electric guitar designed for modern metal and extreme playing styles. Featuring an aggressive aesthetic, a Floyd Rose tremolo system, and powerful active pickups, it delivers tight low-end response, crushing distortion, and excellent note definition. Its fast-playing neck and premium construction provide the stability and precision needed for demanding riffs, technical solos, and expressive lead work. Built for players who push the limits of heavy music, the Apocalypse combines bold design with uncompromising performance.",
-    sku: "PM-SC-002",
-    countdown: "04:12:00",
-    lotNumber: "Lot #002",
-    status: "UPCOMING",
+    status: "SCHEDULED",
     price: 6500,
-    craftsmanship: "Country of manufacture varies by production batch",
+    minIncrement: 100,
+    currency: "USD",
     quantity: 10,
-    slug: "schecter-c-7-fr-s-apocalypse",
-    endsAtIso: "2026-11-26T20:00:00Z",
+    craftsmanship: "Country of manufacture varies by production batch",
+    startsAtIso: "2026-11-27T12:00:00.000Z",
+    endsAtIso: "2026-11-30T20:00:00.000Z",
     image: "/drop/c-7-fr-s-apocalypse.png",
     specs: [
       { label: "Scale Length", value: '26.5" (673 mm)' },
@@ -113,21 +116,22 @@ const UPCOMING_DROPS = [
   },
   {
     id: "drop-3",
-    time: "18:00",
+    slug: "schecter-keith-merrow-km-7-mk-iii-artist-l",
+    sku: "PM-SC-003",
+    lotNumber: "Lot #003",
     title: "Keith Merrow KM-7 MK-III Artist L",
     miniDescription:
       "A signature 7-string guitar designed for technical precision, modern metal, and versatile low-tuned tones.",
     fullDescription:
       "The Schecter Keith Merrow KM-7 MK-III Artist L is a signature 7-string electric guitar developed in collaboration with guitarist Keith Merrow. Designed for progressive metal and technically demanding playing, it combines a comfortable neck profile, premium construction, and high-output pickups for exceptional clarity and articulation. Its extended tonal range makes it ideal for low tunings, complex riffs, tight rhythmic passages, and expressive lead playing. With its refined ergonomics and versatile sound, the KM-7 MK-III delivers professional performance for modern metal musicians.",
-    sku: "PM-SC-003",
-    countdown: "08:45:00",
-    lotNumber: "Lot #003",
-    status: "UPCOMING",
+    status: "SCHEDULED",
     price: 6500,
-    craftsmanship: "Country of manufacture varies by production batch",
+    minIncrement: 100,
+    currency: "USD",
     quantity: 10,
-    slug: "schecter-keith-merrow-km-7-mk-iii-artist-l",
-    endsAtIso: "2026-11-27T20:00:00Z",
+    craftsmanship: "Country of manufacture varies by production batch",
+    startsAtIso: "2026-11-28T18:00:00.000Z",
+    endsAtIso: "2026-12-01T20:00:00.000Z",
     image: "/drop/keith-merrow-km-7mk-III.png",
     specs: [
       { label: "Scale Length", value: '26.5" (673 mm)' },
@@ -147,21 +151,22 @@ const UPCOMING_DROPS = [
   },
   {
     id: "drop-4",
-    time: "12:00",
+    slug: "schecter-c-8-multiscale-silver-mountain-lh",
+    sku: "PM-SC-004",
+    lotNumber: "Lot #004",
     title: "C-8 Multiscale Silver Mountain LH",
     miniDescription:
       "An extended-range 8-string multiscale guitar built for deep tunings, powerful riffs, and modern metal.",
     fullDescription:
       "The Schecter C-8 Multiscale Silver Mountain LH is an extended-range 8-string electric guitar designed for players who demand maximum tonal range and precision. Its multiscale fretboard provides optimized string tension across all eight strings, improving playability, intonation, and clarity in extremely low tunings. Equipped with powerful pickups and premium hardware, it delivers a massive low-end response while maintaining definition and articulation across the entire fretboard. Featuring the distinctive Silver Mountain aesthetic and a left-handed configuration, this instrument is built for progressive metal, djent, and technically demanding performances.",
-    sku: "PM-SC-004",
-    countdown: "04:12:00",
-    lotNumber: "Lot #004",
-    status: "UPCOMING",
+    status: "SCHEDULED",
     price: 6500,
-    craftsmanship: "Country of manufacture varies by production batch",
+    minIncrement: 100,
+    currency: "USD",
     quantity: 10,
-    slug: "schecter-c-8-multiscale-silver-mountain-lh",
-    endsAtIso: "2026-11-28T20:00:00Z",
+    craftsmanship: "Country of manufacture varies by production batch",
+    startsAtIso: "2026-11-30T12:00:00.000Z",
+    endsAtIso: "2026-12-03T20:00:00.000Z",
     image: "/drop/c-8-multiscale-silver.png",
     specs: [
       { label: "Scale Length", value: '25.5"–27" Multiscale (648–685.8 mm)' },
@@ -178,21 +183,22 @@ const UPCOMING_DROPS = [
   },
   {
     id: "drop-5",
-    time: "18:00",
+    slug: "ibanez-rgd621ah",
+    sku: "PM-IB-005",
+    lotNumber: "Lot #005",
     title: "Ibanez RGD621AH",
     miniDescription:
       "A modern 6-string metal guitar combining extended-range design, powerful tone, and effortless playability.",
     fullDescription:
       "The Ibanez RGD621AH is a high-performance electric guitar designed for modern metal, heavy riffs, and precise technical playing. Its extended-scale construction provides increased string tension and improved tuning stability, making it particularly suitable for lower tunings. Featuring a fast-playing neck, carefully crafted fretwork, and powerful pickups, it delivers tight low-end response, aggressive attack, and excellent note definition. Combining Ibanez engineering with a sleek, performance-focused design, the RGD621AH is a versatile instrument built for demanding guitarists.",
-    sku: "PM-IB-005",
-    countdown: "08:45:00",
-    lotNumber: "Lot #005",
-    status: "UPCOMING",
+    status: "SCHEDULED",
     price: 6500,
-    craftsmanship: "Made in Indonesia (verify exact production version)",
+    minIncrement: 100,
+    currency: "USD",
     quantity: 10,
-    slug: "ibanez-rgd621ah",
-    endsAtIso: "2026-11-29T20:00:00Z",
+    craftsmanship: "Made in Indonesia (verify exact production version)",
+    startsAtIso: "2026-12-02T18:00:00.000Z",
+    endsAtIso: "2026-12-05T20:00:00.000Z",
     image: "/drop/ibanez-p-region-rgd621ah.png",
     specs: [
       { label: "Scale Length", value: '26.5" (673 mm)' },

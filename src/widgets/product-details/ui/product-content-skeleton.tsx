@@ -1,16 +1,9 @@
-import { Skeleton } from "@/shared";
+import { NavTrailSkeleton, Skeleton } from "@/shared";
 
 export function ProductContentSkeleton() {
   return (
-    <div className="space-y-10" aria-busy="true" aria-label="Loading product">
-      {/* Хлебные крошки */}
-      <div className="flex items-center gap-2">
-        <Skeleton className="h-3.5 w-12 rounded-md" />
-        <Skeleton className="h-3.5 w-3 rounded-md" />
-        <Skeleton className="h-3.5 w-16 rounded-md" />
-        <Skeleton className="h-3.5 w-3 rounded-md" />
-        <Skeleton className="h-3.5 w-24 rounded-md" />
-      </div>
+    <div aria-busy="true" aria-label="Loading product">
+      <NavTrailSkeleton />
 
       {/* Основная сетка: галерея + панель покупки */}
       <section className="grid grid-cols-1 gap-10 lg:grid-cols-12 items-start">
@@ -27,27 +20,28 @@ export function ProductContentSkeleton() {
         {/* Правая колонка: DetailPanel */}
         <aside className="rounded-3xl border border-border bg-card p-8 shadow-sm space-y-6 lg:col-span-5">
           <div className="flex items-center justify-between">
-            <Skeleton className="h-4 w-24 rounded-full" />
-            <Skeleton className="h-4 w-28 rounded-full" />
+            <Skeleton className="h-6 w-24 rounded-full" />
+            <Skeleton className="h-6 w-28 rounded-full" />
           </div>
 
           <div className="space-y-2">
             <Skeleton className="h-8 w-4/5 rounded-lg" />
-            <Skeleton className="h-4 w-28 rounded-md" />
+            <Skeleton className="h-8 w-48 rounded-md" />
           </div>
 
           <div className="border-t border-b border-border py-4 space-y-2">
             <Skeleton className="h-3 w-32 rounded-md" />
-            <Skeleton className="h-9 w-36 rounded-lg" />
+            <Skeleton className="h-10 w-36 rounded-lg" />
           </div>
 
           <div className="space-y-2">
-            <Skeleton className="h-3 w-full rounded-md" />
-            <Skeleton className="h-3 w-11/12 rounded-md" />
-            <Skeleton className="h-3 w-3/4 rounded-md" />
+            <Skeleton className="h-4 w-full rounded-md" />
+            <Skeleton className="h-4 w-11/12 rounded-md" />
+            <Skeleton className="h-4 w-10/12 rounded-md" />
+            <Skeleton className="h-4 w-3/4 rounded-md" />
           </div>
 
-          <div className="space-y-3 pt-2">
+          <div className="space-y-3 pt-2 border-b py-4">
             <Skeleton className="h-10 w-full rounded-full" />
             <Skeleton className="h-10 w-full rounded-full" />
           </div>

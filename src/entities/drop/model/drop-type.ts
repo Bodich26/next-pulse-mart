@@ -1,24 +1,47 @@
-export interface Drop {
-  id: string;
-  time: string;
-  title: string;
-  countdown: string;
-  slug: string;
-  image: string;
-  miniDescription: string;
-  fullDescription: string;
-  craftsmanship: string;
-  price: number;
-  quantity: number;
-  specs: DropSpecs[];
-}
+export type DropStatus = "SCHEDULED" | "LIVE" | "ENDED";
 
-export interface DropSpecs {
+export interface DropSpec {
   label: string;
   value: string;
 }
 
-export type UpcomingDropCardProps = Omit<
+export interface Drop {
+  id: string;
+  slug: string;
+  sku: string;
+  lotNumber: string;
+  title: string;
+  miniDescription: string;
+  fullDescription: string;
+  status: DropStatus;
+  price: number;
+  minIncrement: number;
+  currency: "USD";
+  quantity: number;
+  craftsmanship: string;
+  startsAtIso: string;
+  endsAtIso: string;
+  antiSnipeSeconds?: number;
+  image: string;
+  gallery?: string[];
+  specs: DropSpec[];
+}
+
+export type UpcomingDropCardProps = Pick<
   Drop,
-  "quantity" | "price" | "craftsmanship" | "fullDescription"
+  | "id"
+  | "lotNumber"
+  | "startsAtIso"
+  | "image"
+  | "title"
+  | "miniDescription"
+  | "slug"
 >;
+
+//-------
+export interface TimeParts {
+  days: string;
+  hours: string;
+  minutes: string;
+  seconds: string;
+}

@@ -4,8 +4,8 @@ export const headerNavigation = [
     href: "/catalog",
   },
   {
-    label: "Drop",
-    href: "/drop",
+    label: "Blog",
+    href: "/blog",
   },
   {
     label: "About",

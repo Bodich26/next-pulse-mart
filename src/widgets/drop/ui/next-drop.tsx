@@ -1,5 +1,5 @@
-import { Drop } from "@/entities/drop";
-import { Card, PriceFormat } from "@/shared";
+import { Drop, DropCountdown } from "@/entities/drop";
+import { Card, DetailPanel, PriceFormat } from "@/shared";
 import { ArrowRight, Sparkles } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,7 +15,7 @@ export const NextDrop = ({ drop }: Props) => {
       className="overflow-hidden rounded-3xl bg-card shadow-sm border border-border"
     >
       <Card className="grid grid-cols-1 lg:grid-cols-12 p-0">
-        <div className="flex flex-col justify-between p-8 lg:col-span-8">
+        <div className="flex flex-col justify-between p-8 lg:col-span-7">
           <div>
             <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
               <Sparkles className="h-3 w-3" />
@@ -52,38 +52,23 @@ export const NextDrop = ({ drop }: Props) => {
         </div>
 
         {/* Правая часть: Карточка торгов */}
-        <aside
-          aria-label="Bidding Terminal"
-          className="flex flex-col justify-between border-t border-border bg-muted/30 p-8 sm:p-10 lg:col-span-4 lg:border-t-0 lg:border-l"
+        <DetailPanel
+          ariaLabel="Bidding Terminal"
+          sticky={false}
+          innerClassName="flex flex-col justify-between border-0 rounded-none border-l"
         >
-          <div>
-            <span className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">
-              Live Drop
-            </span>
-            <h2 className="mt-1 text-xl font-bold tracking-tight text-foreground">
-              Bidding Terminal
-            </h2>
-
-            {/* Таймер обратного отсчета */}
-            <div className="mt-6 rounded-2xl bg-card p-5 shadow-2xs border border-border">
-              <span className="block text-[11px] font-medium text-muted-foreground">
-                Time Remaining
+          <div className="space-y-6">
+            <div className="flex items-center justify-between text-xs font-medium">
+              <span className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">
+                Live Drop
               </span>
-              <time
-                dateTime="P2DT14H59M32S"
-                className="mt-1 block text-3xl font-bold tracking-tight text-foreground tabular-nums"
-              >
-                02 : 14 : 59 : 32
-              </time>
-              <div className="mt-2 grid grid-cols-4 text-[10px] font-medium text-muted-foreground uppercase">
-                <span>Days</span>
-                <span>Hrs</span>
-                <span>Mins</span>
-                <span>Secs</span>
-              </div>
+              <h2 className="mt-1 text-xl font-bold tracking-tight text-foreground">
+                Bidding Terminal
+              </h2>
             </div>
 
-            {/* Метаданные торгов */}
+            <DropCountdown targetDate={drop.endsAtIso} />
+
             <dl className="mt-6 space-y-3 border-t border-border pt-5 text-sm">
               <div className="flex items-center justify-between">
                 <dt className="text-muted-foreground">Quantity</dt>
@@ -105,9 +90,9 @@ export const NextDrop = ({ drop }: Props) => {
             className="mt-8 gap-2 flex w-full items-center justify-center rounded-full bg-primary px-6 py-1.5 text-sm font-medium text-primary-foreground shadow-xs transition-all hover:bg-primary/90 active:scale-[0.99]"
           >
             Go to buy
-            <ArrowRight />
+            <ArrowRight className="h-4 w-4" />
           </Link>
-        </aside>
+        </DetailPanel>
       </Card>
     </section>
   );
