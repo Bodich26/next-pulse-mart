@@ -73,6 +73,7 @@ async function ProductContent({ params }: ProductPageProps) {
 
   return (
     <>
+      <ProductContentSkeleton />
       <NavTrail
         items={[
           { label: "Home", href: "/" },

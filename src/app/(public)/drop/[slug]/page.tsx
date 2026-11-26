@@ -1,25 +1,28 @@
-import { ShieldAlert, Clock, Package } from "lucide-react";
+import { ShieldAlert, Package } from "lucide-react";
 import { Button, DetailPanel, NavTrail, PriceFormat } from "@/shared";
 import { TechnicalProductSpecs } from "@/widgets/product-details";
 import Image from "next/image";
+import { DropCountdown } from "@/entities/drop";
 
 const MOCK_DROP = {
   id: "drop-1",
-  time: "12:00",
+  slug: "ibanez-rgd-prestige",
+  sku: "PM-DR-001",
+  lotNumber: "Lot #001",
   title: "Ibanez RGD Prestige",
   miniDescription:
     "A high-performance Japanese-crafted electric guitar built for precision, speed, and exceptional playability.",
   fullDescription:
     "The Ibanez RGD Prestige is a premium electric guitar engineered for modern metal and demanding players. Crafted in Japan with exceptional attention to detail, it features an extended scale length for improved string tension, precise intonation, and powerful low-end clarity. Its high-performance neck profile, premium fretwork, and carefully selected hardware provide effortless playability, even during the most technically demanding passages. Designed for heavy riffs, intricate solos, and aggressive downtuned tones, the RGD Prestige combines Japanese craftsmanship with uncompromising performance.",
-  sku: "PM-KB-001",
-  countdown: "04:12:00",
-  lotNumber: "Lot #001",
   status: "LIVE",
   price: 6500,
+  minIncrement: 100,
+  currency: "USD",
+  countdown: "04:12:00",
+  quantity: 10,
   craftsmanship: "Made in Japan",
-  stockCount: 10,
-  slug: "ibanez-rgd-prestige",
-  endsAtIso: "2026-11-15T20:00:00Z",
+  startsAtIso: "2026-11-26T10:00:00.000Z",
+  endsAtIso: "2026-11-29T20:00:00.000Z",
   image: "/drop/ibanez-rgd-prestige.png",
   specs: [
     { label: "Scale Length", value: '30" Baritone Scale' },
@@ -45,7 +48,7 @@ export default async function Drop({ params }: AuctionPageProps) {
 
   // В реальном проекте: prisma.flashDrop.findUnique({ where: { slug }, include: { bids: true } })
   const drop = MOCK_DROP;
-  const isAvailable = drop.stockCount > 0;
+  const isAvailable = drop.quantity > 0;
 
   return (
     <>
@@ -140,30 +143,8 @@ export default async function Drop({ params }: AuctionPageProps) {
               Active
             </span>
           </div>
-          {/* Таймер обратного отсчета */}
-          <div className="mt-6 rounded-2xl border border-border/60 bg-muted/40 p-5">
-            <div className="flex items-center justify-between text-[11px] font-medium text-muted-foreground">
-              <span className="flex items-center gap-1">
-                <Clock className="h-3.5 w-3.5 text-primary" />
-                <span>Time Remaining</span>
-              </span>
-              <span>Anti-Snipe: +30s</span>
-            </div>
 
-            <time
-              dateTime="P2DT14H59M32S"
-              className="mt-2 block text-3xl font-bold tracking-tight text-foreground sm:text-4xl tabular-nums"
-            >
-              02 : 14 : 59 : 32
-            </time>
-
-            <div className="mt-2 grid grid-cols-4 text-[10px] font-medium text-muted-foreground uppercase">
-              <span>Days</span>
-              <span>Hrs</span>
-              <span>Mins</span>
-              <span>Secs</span>
-            </div>
-          </div>
+          <DropCountdown targetDate={drop.endsAtIso} />
           {/* Текущая цена */}
           <div className="flex justify-between gap-2 flex-wrap items-end mt-6 border-b border-border pb-6">
             <div>
@@ -178,7 +159,7 @@ export default async function Drop({ params }: AuctionPageProps) {
             {isAvailable ? (
               <span className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-semibold">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                In Stock {drop.stockCount} units
+                In Stock {drop.quantity} units
               </span>
             ) : (
               <span className="text-destructive font-semibold">Sold Out</span>
