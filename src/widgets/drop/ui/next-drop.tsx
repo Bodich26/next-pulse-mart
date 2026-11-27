@@ -55,19 +55,13 @@ export const NextDrop = ({ drop }: Props) => {
         <DetailPanel
           ariaLabel="Bidding Terminal"
           sticky={false}
-          innerClassName="flex flex-col justify-between border-0 rounded-none border-l"
+          innerClassName="flex flex-col justify-between border-0 rounded-none border-l max-lg:border-t max-lg:border-l-0"
         >
           <div className="space-y-6">
-            <div className="flex items-center justify-between text-xs font-medium">
-              <span className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">
-                Live Drop
-              </span>
-              <h2 className="mt-1 text-xl font-bold tracking-tight text-foreground">
-                Bidding Terminal
-              </h2>
-            </div>
-
-            <DropCountdown targetDate={drop.endsAtIso} />
+            <DropCountdown
+              startsAtIso={drop.startsAtIso}
+              endsAtIso={drop.endsAtIso}
+            />
 
             <dl className="mt-6 space-y-3 border-t border-border pt-5 text-sm">
               <div className="flex items-center justify-between">

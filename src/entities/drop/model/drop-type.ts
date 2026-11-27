@@ -36,6 +36,7 @@ export type UpcomingDropCardProps = Pick<
   | "title"
   | "miniDescription"
   | "slug"
+  | "status"
 >;
 
 //-------
