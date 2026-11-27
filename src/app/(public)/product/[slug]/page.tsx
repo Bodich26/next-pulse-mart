@@ -1,62 +1,19 @@
 import { ProductGallery } from "@/entities/product";
 import { Delivery } from "@/widgets/delivery";
 import { TechnicalProductSpecs } from "@/widgets/product-details/ui/technical-product-specs";
-import { Button, DetailPanel, NavTrail, PriceFormat } from "@/shared";
+import {
+  Button,
+  DetailPanel,
+  MOCK_PRODUCT,
+  NavTrail,
+  PriceFormat,
+  RELATED_PRODUCTS,
+} from "@/shared";
 import {
   ProductContentSkeleton,
   RelatedProducts,
 } from "@/widgets/product-details";
 import { Suspense } from "react";
-
-// Моковые данные для демонстрации (в продакшене получается из Prisma по slug)
-const MOCK_PRODUCT = {
-  id: "prod-1",
-  sku: "PM-KB-001",
-  title: "Cyber-Deck 75% Mechanical Keyboard",
-  category: "Peripherals",
-  price: 249,
-  stockCount: 14,
-  description:
-    "Engineered for extreme performance and heavy daily abuse. Built around a solid milled aircraft-grade aluminum chassis, gasket-mounted plate, and hot-swappable PCB with custom factory-lubed tactile heavy switches.",
-  specs: [
-    { label: "Chassis", value: "CNC Milled Aluminum (Anodized Matte Black)" },
-    { label: "Layout", value: "75% Compact Tenkeyless (82 Keys)" },
-    { label: "Switches", value: "Custom Tactile Heavy (67g actuation)" },
-    { label: "Connectivity", value: "Detachable USB-C Braided Cable" },
-    { label: "Weight", value: "1.85 kg" },
-  ],
-  images: [
-    "/catalog/keyboard-1.png",
-    "/catalog/keyboard-2.png",
-    "/catalog/keyboard-3.png",
-    "/catalog/keyboard-4.png",
-  ],
-};
-
-const RELATED_PRODUCTS = [
-  {
-    id: "prod-2",
-    title: "Monitor Zero Headphones",
-    price: 430,
-    slug: "monitor-zero-headphones",
-    image: "/catalog/keyboard-1.png",
-  },
-  {
-    id: "prod-7",
-    title: "Tungsten Artisan ESC Keycap",
-    price: 65,
-    slug: "tungsten-artisan-keycap",
-    image: "/catalog/keyboard-1.png",
-  },
-  {
-    id: "prod-8",
-    title: "Anthology Vol. II Vinyl",
-    price: 89,
-    slug: "anthology-vol-2-vinyl",
-    image: "/catalog/keyboard-1.png",
-  },
-];
-
 interface ProductPageProps {
   params: Promise<{
     slug: string;
@@ -73,7 +30,6 @@ async function ProductContent({ params }: ProductPageProps) {
 
   return (
     <>
-      <ProductContentSkeleton />
       <NavTrail
         items={[
           { label: "Home", href: "/" },

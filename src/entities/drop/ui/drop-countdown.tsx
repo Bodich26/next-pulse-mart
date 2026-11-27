@@ -1,31 +1,45 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Clock } from "lucide-react";
-import { TimeParts } from "../model/drop-type";
+import { Clock, Package } from "lucide-react";
+import { DropStatus, TimeParts } from "../model/drop-type";
 import { getRemainingParts, INITIAL_TIME } from "../model/drop-remaining-part";
+import { getDropTimingState } from "../model/drop-phase";
+import { StatusStyles } from "@/shared";
 
 interface DropCountdownProps {
-  targetDate: string | Date;
+  startsAtIso: string;
+  endsAtIso: string;
   antiSnipeLabel?: string;
   onExpire?: () => void;
+  onPhaseChange?: (phase: DropStatus) => void;
 }
 
 export const DropCountdown = ({
-  targetDate,
+  startsAtIso,
+  endsAtIso,
   antiSnipeLabel = "Anti-Snipe: +30s",
   onExpire,
+  onPhaseChange,
 }: DropCountdownProps) => {
-  const targetMs = new Date(targetDate).getTime();
+  const [status, setStatus] = useState<DropStatus>("SCHEDULED");
   const [time, setTime] = useState<TimeParts>(INITIAL_TIME);
 
   useEffect(() => {
     let expiredNotified = false;
+    let lastStatus: DropStatus | undefined;
 
     const syncTime = () => {
       const nowMs = Date.now();
-      setTime(getRemainingParts(targetMs, nowMs));
+      const state = getDropTimingState(startsAtIso, endsAtIso, nowMs);
 
-      if (nowMs >= targetMs && !expiredNotified) {
+      if (state.phase !== lastStatus) {
+        lastStatus = state.phase;
+        setStatus(state.phase);
+        onPhaseChange?.(state.phase);
+      }
+
+      setTime(getRemainingParts(state.targetMs, nowMs));
+      if (state.phase === "ENDED" && !expiredNotified) {
         expiredNotified = true;
         onExpire?.();
       }
@@ -38,24 +52,36 @@ export const DropCountdown = ({
       clearTimeout(initialTimer);
       clearInterval(intervalId);
     };
-  }, [targetMs, onExpire]);
+  }, [startsAtIso, endsAtIso, onExpire, onPhaseChange]);
+
+  const endsMs = new Date(endsAtIso).getTime();
 
   return (
-    <div className="mt-6 rounded-2xl border border-border/60 bg-muted/40 p-5">
-      <div className="flex items-center justify-between text-[11px] font-medium text-muted-foreground">
-        <span className="flex items-center gap-1">
-          <Clock className="h-3.5 w-3.5 text-primary" />
-          <span>Time Remaining</span>
+    <>
+      <div className="flex items-center justify-between text-xs font-medium">
+        <span className="flex items-center gap-2 font-bold text-foreground">
+          <Package className="h-4 w-4 text-primary" />
+          <span>Current Drop</span>
         </span>
-        <span>{antiSnipeLabel}</span>
+        <StatusStyles status={status} />
       </div>
 
-      <time
-        dateTime="P2DT14H59M32S"
-        className="mt-2 block text-3xl font-bold tracking-tight text-foreground sm:text-4xl tabular-nums"
-      >
-        {time.days}d : {time.hours}h : {time.minutes}m : {time.seconds}s
-      </time>
-    </div>
+      <div className="mt-6 rounded-2xl border border-border/60 bg-muted/40 p-5">
+        <div className="flex items-center justify-between text-[11px] font-medium text-muted-foreground">
+          <span className="flex items-center gap-1">
+            <Clock className="h-3.5 w-3.5 text-primary" />
+            <span>Time Remaining</span>
+          </span>
+          <span>{status === "LIVE" ? antiSnipeLabel : status}</span>
+        </div>
+
+        <time
+          dateTime={new Date(endsMs).toISOString()}
+          className="mt-2 block text-3xl font-bold tracking-tight text-foreground sm:text-4xl tabular-nums"
+        >
+          {time.days}d : {time.hours}h : {time.minutes}m : {time.seconds}s
+        </time>
+      </div>
+    </>
   );
 };

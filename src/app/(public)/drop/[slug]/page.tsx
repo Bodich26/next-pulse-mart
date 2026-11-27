@@ -1,42 +1,14 @@
-import { ShieldAlert, Package } from "lucide-react";
-import { Button, DetailPanel, NavTrail, PriceFormat } from "@/shared";
+import { ShieldAlert } from "lucide-react";
+import {
+  Button,
+  DetailPanel,
+  DROP_ON_PAGE,
+  NavTrail,
+  PriceFormat,
+} from "@/shared";
 import { TechnicalProductSpecs } from "@/widgets/product-details";
 import Image from "next/image";
 import { DropCountdown } from "@/entities/drop";
-
-const MOCK_DROP = {
-  id: "drop-1",
-  slug: "ibanez-rgd-prestige",
-  sku: "PM-DR-001",
-  lotNumber: "Lot #001",
-  title: "Ibanez RGD Prestige",
-  miniDescription:
-    "A high-performance Japanese-crafted electric guitar built for precision, speed, and exceptional playability.",
-  fullDescription:
-    "The Ibanez RGD Prestige is a premium electric guitar engineered for modern metal and demanding players. Crafted in Japan with exceptional attention to detail, it features an extended scale length for improved string tension, precise intonation, and powerful low-end clarity. Its high-performance neck profile, premium fretwork, and carefully selected hardware provide effortless playability, even during the most technically demanding passages. Designed for heavy riffs, intricate solos, and aggressive downtuned tones, the RGD Prestige combines Japanese craftsmanship with uncompromising performance.",
-  status: "LIVE",
-  price: 6500,
-  minIncrement: 100,
-  currency: "USD",
-  countdown: "04:12:00",
-  quantity: 10,
-  craftsmanship: "Made in Japan",
-  startsAtIso: "2026-11-26T10:00:00.000Z",
-  endsAtIso: "2026-11-29T20:00:00.000Z",
-  image: "/drop/ibanez-rgd-prestige.png",
-  specs: [
-    { label: "Scale Length", value: '30" Baritone Scale' },
-    { label: "Body Material", value: "Chambered Aircraft Aluminum" },
-    {
-      label: "Neck & Fretboard",
-      value: "Carbon-Reinforced Roasted Maple / Ebony",
-    },
-    { label: "Pickups", value: "Custom Active Ceramic Set" },
-    { label: "Bridge", value: "EverTune Constant Tension System" },
-    { label: "Serial Number", value: "PM-CS-2026-001" },
-  ],
-};
-
 interface AuctionPageProps {
   params: Promise<{
     slug: string;
@@ -47,7 +19,7 @@ export default async function Drop({ params }: AuctionPageProps) {
   const { slug } = await params;
 
   // В реальном проекте: prisma.flashDrop.findUnique({ where: { slug }, include: { bids: true } })
-  const drop = MOCK_DROP;
+  const drop = DROP_ON_PAGE;
   const isAvailable = drop.quantity > 0;
 
   return (
@@ -133,18 +105,10 @@ export default async function Drop({ params }: AuctionPageProps) {
         </div>
 
         <DetailPanel ariaLabel="Product Purchase Panel">
-          <div className="flex items-center justify-between text-xs font-medium">
-            <span className="flex items-center gap-2 font-bold text-foreground">
-              <Package className="h-4 w-4 text-primary" />
-              <span>Current Drop</span>
-            </span>
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-3 py-0.5 font-semibold text-emerald-600 dark:text-emerald-400">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-              Active
-            </span>
-          </div>
-
-          <DropCountdown targetDate={drop.endsAtIso} />
+          <DropCountdown
+            startsAtIso={drop.startsAtIso}
+            endsAtIso={drop.endsAtIso}
+          />
           {/* Текущая цена */}
           <div className="flex justify-between gap-2 flex-wrap items-end mt-6 border-b border-border pb-6">
             <div>

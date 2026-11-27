@@ -14,7 +14,6 @@ export function ProductGallery({ title, images }: ProductGalleryProps) {
 
   return (
     <div className="space-y-4 lg:col-span-7">
-      {/* Главное изображение */}
       <figure className="relative aspect-square w-full overflow-hidden rounded-3xl bg-card text-card-foreground shadow-sm border border-border">
         {activeImage ? (
           <Image
